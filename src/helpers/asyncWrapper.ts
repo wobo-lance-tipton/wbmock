@@ -1,5 +1,11 @@
+import { RequestHandler } from 'express';
 import asyncHandler from 'express-async-handler';
 
-export const asyncWrapper = (handlers: Array<Function>): Array<Function> => {
-  return handlers.map((handler) => asyncHandler((...args) => handler(...args)));
+/**
+ * Loops over the passed in RequestHandler methods and wraps each one in the asyncHandler
+ */
+export const asyncWrapper = (
+  handlers: Array<RequestHandler>,
+): Array<RequestHandler> => {
+  return handlers.map(asyncHandler);
 };

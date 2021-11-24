@@ -6,8 +6,8 @@ const rootDir = path.join(__dirname, '../');
 /**
  * Starts the prxoy server, to proxy requests to our mock server
  */
-export const mockServer = () => {
-  return spawn(
+export const mockServer = (): void => {
+  spawn(
     'npx',
     [
       `mockoon-cli`,
