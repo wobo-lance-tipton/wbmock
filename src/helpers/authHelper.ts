@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { Base64 } from 'js-base64';
 import { cookies } from '../constants';
-import { IUser, ICookieData } from '../types/auth.types';
+import { IUser, ICookieData } from '../types/app.types';
 
 export const parseUserFromCookie = (req: Request): IUser => {
   const cookieValue = req.signedCookies[cookies.auth];

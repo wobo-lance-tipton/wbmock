@@ -1,4 +1,3 @@
-import { mockoon } from './mockoon';
 import { proxyEndpoint } from './proxy';
 import { tokenEndpoint } from './token';
 import { validateEndpoint } from './validate';
@@ -7,7 +6,6 @@ import { setCookies } from '../middleware/setCookies';
 import { setLocalUser } from '../middleware/setLocalUser';
 
 export const endpointMap = {
-  ['/mockoon/config']: [mockoon],
   ['/wb/oauth/authorize']: [authorizeEndpoint],
   ['/wb/oauth/token']: [setLocalUser, tokenEndpoint],
   ['/wb/oauth/validate']: [setLocalUser, validateEndpoint],

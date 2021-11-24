@@ -1,4 +1,4 @@
-import { IUser } from '../types/auth.types';
+import { IUser } from '../types/app.types';
 import { NextFunction, Request, Response } from 'express';
 import { parseUserFromCookie } from '../helpers/authHelper';
 import { getUserId } from '../fixtures';

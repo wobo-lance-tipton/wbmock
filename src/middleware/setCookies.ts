@@ -1,7 +1,7 @@
 import config from '../config';
 import { Base64 } from 'js-base64';
 import { cookies } from '../constants';
-import { ICookieData } from '../types/auth.types';
+import { ICookieData } from '../types/app.types';
 import { NextFunction, Request, Response } from 'express';
 
 /**

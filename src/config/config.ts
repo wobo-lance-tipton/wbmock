@@ -1,10 +1,9 @@
 import getClientEnvironment from './env';
-const mockoonConfigEndpoint = `http://localhost:4146/mockoon/config`;
 
 getClientEnvironment();
 
 const config = {
-  port: process.env.WOBO_PORT || process.env.PORT || `4146`,
+  port: process.env.WOBO_PORT || process.env.PORT || `4147`,
   canvas: {
     sharedSecret: process.env.CANVAS_API_SHARED_SECRET,
   },
@@ -21,11 +20,10 @@ const config = {
       path: process.env.WOBO_COOKIE_PATH || '/',
     },
   },
-  mockoon: {
-    data: process.env.MOCKOON_DATA_FILE || mockoonConfigEndpoint,
-    port: process.env.MOCKOON_PORT || `4147`,
-    name: process.env.MOCKOON_NAME || `Wobo Server`,
-  },
+  cookies: {
+    auth: process.env.SENTINEL_CANVAS_AUTH_COOKIE,
+    authIndicator: process.env.LOGGED_IN_USER_COOKIE,
+  }
 };
 
 export default config;
