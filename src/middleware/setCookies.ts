@@ -9,7 +9,11 @@ import { NextFunction, Request, Response } from 'express';
  * Pulls the user id from the request, and adds it to the cookie
  *
  */
-export const setCookies = (req: Request, res: Response, next: NextFunction): void => {
+export const setCookies = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
   const cookieData: ICookieData = {
     id: <string>req.query.userId,
     exp: Math.floor((Date.now() + config.wobo.cookieOptions.maxAge) / 1000),
