@@ -1,0 +1,6 @@
+{
+  "ext": "js,ts,json",
+  "exec": "npm start",
+  "watch": ["src", ".env", ".env.*"],
+  "ignore": ["src/**/*.spec.ts", "src/mockServer.ts"]
+}
