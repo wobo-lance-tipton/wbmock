@@ -3,7 +3,7 @@ import getClientEnvironment from './env';
 getClientEnvironment();
 
 const config = {
-  port: process.env.WOBO_PORT || process.env.PORT || `4147`,
+  port: process.env.WOBO_MOCK_PORT || process.env.PORT || `80`,
   canvas: {
     sharedSecret: process.env.CANVAS_API_SHARED_SECRET,
   },
