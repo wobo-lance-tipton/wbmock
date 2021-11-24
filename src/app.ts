@@ -1,4 +1,5 @@
 import cors from 'cors';
+import multer from 'multer';
 import routes from './routes';
 import config from './config/config';
 import cookieParser from 'cookie-parser';
@@ -14,7 +15,7 @@ app.use(
     credentials: true,
   }),
 );
-app.use(require('multer')().none());
+app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
