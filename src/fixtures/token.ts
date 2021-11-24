@@ -5,12 +5,11 @@
  */
 
 /**
- * Eventually this should become a randomly generated number 
+ * Eventually this should become a randomly generated number
  */
-const randomNum = '12345'
+const randomNum = '12345';
 
 export const token = {
   code: randomNum,
   access_token: randomNum,
-}
-
+};

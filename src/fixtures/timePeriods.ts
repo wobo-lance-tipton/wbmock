@@ -1,11 +1,10 @@
-
 /**
  * This file contains time period mock data
  * Currently only works with 1 active connection, because it response with the same user
  * The values are hardcoded, but should be update to be dyamic
- * 
+ *
  * Need to update the date ranges to be relative to the current date
- * 
+ *
  */
 
 export const timePeriods = [
@@ -30,5 +29,5 @@ export const timePeriods = [
     format: 'm/d/Y',
     stats: 1,
     value: 1,
-  }
-]
+  },
+];

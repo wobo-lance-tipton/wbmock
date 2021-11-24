@@ -1,5 +1,5 @@
 import getClientEnvironment from './env';
-const mockoonConfigEndpoint = `http://localhost:4146/mockoon/config`
+const mockoonConfigEndpoint = `http://localhost:4146/mockoon/config`;
 
 getClientEnvironment();
 
@@ -25,7 +25,7 @@ const config = {
     data: process.env.MOCKOON_DATA_FILE || mockoonConfigEndpoint,
     port: process.env.MOCKOON_PORT || `4147`,
     name: process.env.MOCKOON_NAME || `Wobo Server`,
-  }
+  },
 };
 
 export default config;

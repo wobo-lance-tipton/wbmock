@@ -2,7 +2,7 @@ import cors from 'cors';
 import routes from './routes';
 import config from './config/config';
 import cookieParser from 'cookie-parser';
-import { logReq } from './middleware/logReq'
+import { logReq } from './middleware/logReq';
 import express, { Application } from 'express';
 
 export const app: Application = express();
@@ -15,7 +15,7 @@ app.use(
   }),
 );
 app.use(require('multer')().none());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 app.use(cookieParser(config.canvas.sharedSecret));

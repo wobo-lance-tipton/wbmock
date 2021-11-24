@@ -4,7 +4,7 @@ import { parseUserFromCookie } from '../helpers/authHelper';
 import config from '../config';
 import { IUser } from '../controllers/auth.types';
 import { cookies } from '../constants';
-  
+
 const addCookies = (req: Request, res: Response) => {
   // Not sure why, but need to add the cookie here for some reason
   // Seems like the sentinel auth is not working on the API side
@@ -14,62 +14,64 @@ const addCookies = (req: Request, res: Response) => {
     ...config.sentinel.cookieOptions,
   });
   res.cookie(cookies.authIndicator, 'true', config.sentinel.cookieOptions);
-}
+};
 
-const addLocalUser =  (req:Request, res: Response) => {
-  let user: IUser = { id: '1' }
+const addLocalUser = (req: Request, res: Response) => {
+  let user: IUser = { id: '1' };
   try {
-    user = parseUserFromCookie(req)
-  }
-  catch(err){}
+    user = parseUserFromCookie(req);
+  } catch (err) {}
 
-  res.locals.user = user
-  return user
-}
+  res.locals.user = user;
+  return user;
+};
 
 export const wbApiMock = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-
-
   if (req.originalUrl.includes('favicon.ico')) {
-    return res.status(204).end()
+    return res.status(204).end();
   }
-  
-  if(req.path === '/wb/oauth/authorize'){
-    console.log(`[ SENTINEL ] - Mocked Path - ${req.path}`)
-    const { redirect_uri, state } = req.query
+
+  if (req.path === '/wb/oauth/authorize') {
+    console.log(`[ SENTINEL ] - Mocked Path - ${req.path}`);
+    const { redirect_uri, state } = req.query;
 
     return res.redirect(`${redirect_uri}?state=${state}&code=12345`);
   }
 
-  addLocalUser(req, res)
-  
-  if(req.path === '/wb/oauth/token'){
-    console.log(`[ SENTINEL ] - Mocked Path - ${req.path}`)
+  addLocalUser(req, res);
+
+  if (req.path === '/wb/oauth/token') {
+    console.log(`[ SENTINEL ] - Mocked Path - ${req.path}`);
     res.json({
       success: true,
-      access_token: '12345'
+      access_token: '12345',
     });
-    return next()
+    return next();
   }
 
-  if(req.path === '/wb/oauth/validate'){
-    console.log(`[ SENTINEL ] - Mocked Path - ${req.path}`)
+  if (req.path === '/wb/oauth/validate') {
+    console.log(`[ SENTINEL ] - Mocked Path - ${req.path}`);
     res.json({
       user_id: '1',
       success: true,
     });
-    return next()
+    return next();
   }
 
-  if(req.path.startsWith(`/wb/apis/iproxy`) && req.query.requestType === 'internal'){
-    console.log(`[ SENTINEL Mocked ] Path - ${req.path} | Action - ${req.query.action}`)
-    
-    if(req.query.action === `goal/okrFilterComp`){
-      addCookies(req, res)
+  if (
+    req.path.startsWith(`/wb/apis/iproxy`) &&
+    req.query.requestType === 'internal'
+  ) {
+    console.log(
+      `[ SENTINEL Mocked ] Path - ${req.path} | Action - ${req.query.action}`,
+    );
+
+    if (req.query.action === `goal/okrFilterComp`) {
+      addCookies(req, res);
       res.json({
         filterComp: [
           {
@@ -93,19 +95,19 @@ export const wbApiMock = async (
             format: 'm/d/Y',
             stats: 1,
             value: 1,
-          }
-        ]
-      })
+          },
+        ],
+      });
     }
-    if(req.query.action === `team/InfoAndMembers`){
-      addCookies(req, res)
+    if (req.query.action === `team/InfoAndMembers`) {
+      addCookies(req, res);
       res.json({
         team: {
           id: 1,
-          name: "team",
+          name: 'team',
           owner: 1,
           parent: 1,
-          org_id: 1
+          org_id: 1,
         },
         members: [
           {
@@ -114,11 +116,10 @@ export const wbApiMock = async (
             firstname: 'Joe',
             lastname: 'Schmoe',
             userId: req.query.userId,
-          }
+          },
         ],
-      })
-    }
-    else {
+      });
+    } else {
       const userInfo = {
         people: {
           info: {
@@ -126,21 +127,23 @@ export const wbApiMock = async (
             first_name: 'Joe',
             last_name: 'Schmoe',
             email: 'jschmoe@org.example',
-            org_id: '0'
+            org_id: '0',
           },
-          myTeams: [{
-            teamId: '1',
-            teamName: 'Executive Team',
-            teamRoleId: '2',
-            teamRole: 'member'
-          }]
-        }
-      }
+          myTeams: [
+            {
+              teamId: '1',
+              teamName: 'Executive Team',
+              teamRoleId: '2',
+              teamRole: 'member',
+            },
+          ],
+        },
+      };
       res.json(userInfo);
     }
 
-    return res.end()
+    return res.end();
   }
 
-  return 'get-local-user'
-}
+  return 'get-local-user';
+};

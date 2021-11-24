@@ -4,9 +4,12 @@ import { getAccessToken } from '../fixtures';
 /**
  * Token endpoint to get the token from wobo api
  */
-export const tokenEndpoint = async (req: Request, res: Response): Promise<void> => {
+export const tokenEndpoint = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   res.status(200).json({
     success: true,
-    access_token: getAccessToken(req, res)
+    access_token: getAccessToken(req, res),
   });
-}
+};

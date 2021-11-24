@@ -1,4 +1,4 @@
-import config from '../config/mockoon'
+import config from '../config/mockoon';
 import { Request, Response } from 'express';
 
 /**
@@ -6,4 +6,4 @@ import { Request, Response } from 'express';
  */
 export const mockoon = async (req: Request, res: Response): Promise<void> => {
   res.status(200).json(config);
-}
+};

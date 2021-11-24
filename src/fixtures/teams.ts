@@ -1,14 +1,12 @@
-import { members } from './user'
+import { members } from './user';
 
 export const teams = {
   team: {
     id: 1,
-    name: "team",
+    name: 'team',
     owner: 1,
     parent: 1,
-    org_id: 1
+    org_id: 1,
   },
-  members: [
-    members.user,
-  ],
-}
+  members: [members.user],
+};

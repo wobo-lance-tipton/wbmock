@@ -3,14 +3,19 @@ import { NextFunction, Request, Response } from 'express';
 import { parseUserFromCookie } from '../helpers/authHelper';
 import { getUserId } from '../fixtures';
 
-export const setLocalUser =  (req:Request, res: Response, next: NextFunction): void => {
-  let user: IUser = { id: getUserId(req, res) }
+export const setLocalUser = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
+  let user: IUser;
   try {
-    user = parseUserFromCookie(req)
+    user = parseUserFromCookie(req);
+  } catch (err) {
+    user = { id: getUserId(req, res) };
   }
-  catch(err){}
 
-  res.locals.user = user
+  res.locals.user = user;
 
-  next()
-}
+  next();
+};
