@@ -10,6 +10,7 @@ export const parseUserFromCookie = (req: Request): IUser => {
   const cookieData: ICookieData = JSON.parse(
     Base64.decode(cookieValue),
   ) as ICookieData;
+
   if (!cookieData) throw new Error(`Missing cookie data`);
 
   return { id: cookieData.id };
