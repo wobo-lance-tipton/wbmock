@@ -2,6 +2,8 @@ import { goalOkr } from './goalOkr';
 import { catchAll } from './catchAll';
 import { teamInfo } from './teamInfo';
 import { Request, Response } from 'express';
+import { getUserTeams } from './getUserTeams';
+import { orgFeatureFlags } from './orgFeatureFlags';
 
 /**
  * Main proxy endpoint to handle general requests to the wobo server api
@@ -18,6 +20,14 @@ export const proxyEndpoint = async (
     }
     case `team/InfoAndMembers`: {
       await teamInfo(req, res);
+      break;
+    }
+    case `organization/GetFeatureFlags`: {
+      await orgFeatureFlags(req, res);
+      break;
+    }
+    case `people/MyTeams`: {
+      await getUserTeams(req, res);
       break;
     }
     default: {
