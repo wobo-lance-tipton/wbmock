@@ -4,6 +4,7 @@
     "checkJs": false,
     "module": "commonjs",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "target": "es6",
     "noImplicitAny": true,
     "moduleResolution": "node",

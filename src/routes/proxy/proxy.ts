@@ -1,6 +1,7 @@
 import { goalOkr } from './goalOkr';
 import { catchAll } from './catchAll';
 import { teamInfo } from './teamInfo';
+import { teamGoals } from './teamGoals';
 import { Request, Response } from 'express';
 import { getUserTeams } from './getUserTeams';
 import { orgFeatureFlags } from './orgFeatureFlags';
@@ -28,6 +29,10 @@ export const proxyEndpoint = async (
     }
     case `people/MyTeams`: {
       await getUserTeams(req, res);
+      break;
+    }
+    case `goal/teamGoal`: {
+      await teamGoals(req, res)
       break;
     }
     default: {
